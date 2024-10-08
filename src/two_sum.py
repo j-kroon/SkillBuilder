@@ -42,13 +42,10 @@ class Solution:
 
     def two_sum(self, nums: list[int], target: int):
         try:
-            max_num = max(nums)
-            comp_val = 10**9
             assert 2 <= len(nums) <= 10**4
             assert -10**9 <= min(nums)
             assert max(nums) <= 10**9
         except AssertionError as e:
-            self.logger.error(f"input out of bounds")
             raise e
         for i in nums:
             working = nums.copy()
