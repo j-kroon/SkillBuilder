@@ -10,13 +10,13 @@ def test_two_sum_with_answer():
     :return:
     """
     sol = Solution()
-    numbers = [0,1,3]
-    target = 1
+    numbers = [0,1,3,100,30]
+    target = 30
     result = sol.two_sum(nums=numbers, target=target)
-    assert result == [0,1]
-    assert 2 <= len(numbers) <= 10^4
-    assert -10^9 <= min(numbers)
-    assert max(numbers) <= 10^9
+    assert result == [0,4]
+    assert 2 <= len(numbers) <= 10**4
+    assert -10**9 <= min(numbers)
+    assert max(numbers) <= 10**9
 
 def test_two_sum_bad_input():
     sol = Solution()

@@ -42,9 +42,11 @@ class Solution:
 
     def two_sum(self, nums: list[int], target: int):
         try:
-            assert 2 <= len(nums) <= 10 ^ 4
-            assert -10 ^ 9 <= min(nums)
-            assert max(nums) <= 10 ^ 9
+            max_num = max(nums)
+            comp_val = 10**9
+            assert 2 <= len(nums) <= 10**4
+            assert -10**9 <= min(nums)
+            assert max(nums) <= 10**9
         except AssertionError as e:
             self.logger.error(f"input out of bounds")
             raise e
@@ -53,7 +55,7 @@ class Solution:
             working.pop(i)
             for n in working:
                 if i + n == target:
-                    return [nums[i],nums[n]]
+                    return [nums.index(i),nums.index(n)]
         else:
             return None
 
