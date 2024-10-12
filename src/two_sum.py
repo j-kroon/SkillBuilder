@@ -40,6 +40,26 @@ class Solution:
     def __init__(self):
         self.logger = logging.getLogger(__name__)
 
+    def build_list(self, nums: list[int], target):
+        combos = []
+        for i in range(int(target/2+1)):
+            combo = [i, target-i]
+            for x in combo:
+                if x == combo[1]:
+                    if nums.count(x) > 1:
+                        piece1 = nums.index(x)
+                        piece2 = nums.index(x,x)
+                    else:
+                        return None
+                    return [piece1, piece2]
+                else:
+                    iterable_nums = iter(nums)
+                    if all(item in iterable_nums for item in combo):
+                        piece1 = nums.index(combo[0])
+                        piece2 = nums.index(combo[1])
+                        return ()
+        return combos
+
     def two_sum(self, nums: list[int], target: int):
         try:
             assert 2 <= len(nums) <= 10**4
@@ -47,12 +67,14 @@ class Solution:
             assert max(nums) <= 10**9
         except AssertionError as e:
             raise e
+        exploded = [lambda:x for x in target]
         for i in nums:
-            working = nums.copy()
-            working.pop(i)
-            for n in working:
-                if i + n == target:
-                    return [nums.index(i),nums.index(n)]
+            for n in nums[:i]:
+                if nums[i] + nums[n] == target:
+                    return [i,n]
+            for n in nums[i:]:
+                if nums[i] + nums[n] == target:
+                    return [i,n]
         else:
             return None
 
